@@ -1,0 +1,5 @@
+[user]
+	name = Erik Ivarsson
+	email = eriiva@outlook.com
+[core]
+	editor = nvim
