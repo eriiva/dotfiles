@@ -2,4 +2,6 @@
 
 ## Usage
 
-clone, run setup.sh for wanted packages.
+git clone https://github.com/eriiva/dotfiles.git
+./dotfiles/setup.sh <package>
+...
