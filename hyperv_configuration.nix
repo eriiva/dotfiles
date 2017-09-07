@@ -1,44 +1,31 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      /etc/nixos/hardware-configuration.nix
-    ];
+  imports = [
+    /etc/nixos/hardware-configuration.nix
+    /etc/nixos/local-configuration.nix
+  ];
 
-  # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.kernelModules = ["hv_vmbus" "hv_storvsc"];
+  boot.initrd.kernelModules = [ "hv_vmbus" "hv_storvsc" ];
 
-  networking.hostName = "eriiva-dev"; # Define your hostname.
 
-  # Select internationalisation properties.
   i18n = {
     consoleFont = "Lat2-Terminus16";
     consoleKeyMap = "sv-latin1";
-    defaultLocale = "en_US.utf8";
+    defaultLocale = "en_US.UTF-8";
   };
 
-  # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
 
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [ git ];
 
-  # List services that you want to enable:
+  security.sudo.wheelNeedsPassword = false;
 
-  # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   services.openssh.forwardX11 = true;
-  
-  #services.xserver.enable = true;
-  #services.xserver.windowManager.i3.enable = true;
+  services.openssh.permitRootLogin = "no";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -46,14 +33,11 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.extraUsers.eriiva = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ];
-  };
+  # Enable the X11 windowing system.
+  #services.xserver.enable = true;
+  #services.xserver.layout = "se";
+  #services.xserver.xkbOptions = "eurosign:e";
+  #services.xserver.windowManager.i3.enable = true;
 
-  security.sudo.wheelNeedsPassword = false;
-
-  # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "17.03";
 }
