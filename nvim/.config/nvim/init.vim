@@ -8,6 +8,7 @@ Plug 'majutsushi/tagbar'
 "Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 "Plug 'junegunn/fzf.vim'
 Plug 'altercation/vim-colors-solarized'
+Plug 'LnL7/vim-nix'
 Plug '~/.nix-profile/share/vim-plugins/fzf'
 Plug '~/.nix-profile/share/vim-plugins/fzf-vim'
 call plug#end()
@@ -30,3 +31,8 @@ map <leader>n :nohls<cr>
 map <F2> :NERDTreeToggle<cr>
 map <F3> :NERDTreeFind<cr>
 map <F4> :TagbarToggle<cr>
+
+set mouse=a
+
+set background=dark
+colorscheme solarized

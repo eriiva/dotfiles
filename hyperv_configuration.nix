@@ -10,7 +10,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.kernelModules = [ "hv_vmbus" "hv_storvsc" ];
 
-
   i18n = {
     consoleFont = "Lat2-Terminus16";
     consoleKeyMap = "sv-latin1";
@@ -31,7 +30,7 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   # Enable the X11 windowing system.
   #services.xserver.enable = true;
