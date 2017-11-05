@@ -4,13 +4,13 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 call plug#begin()
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'majutsushi/tagbar'
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-"Plug 'junegunn/fzf.vim'
+"Plug 'majutsushi/tagbar'
+Plug 'Raimondi/delimitMate'
 Plug 'altercation/vim-colors-solarized'
 Plug 'LnL7/vim-nix'
 Plug '~/.nix-profile/share/vim-plugins/fzf'
 Plug '~/.nix-profile/share/vim-plugins/fzf-vim'
+Plug '~/.nix-profile/share/vim-plugins/youcompleteme'
 call plug#end()
 
 "colorscheme elflord
@@ -30,9 +30,11 @@ map <leader>g :BCommits<cr>
 map <leader>n :nohls<cr>
 map <F2> :NERDTreeToggle<cr>
 map <F3> :NERDTreeFind<cr>
-map <F4> :TagbarToggle<cr>
+"map <F4> :TagbarToggle<cr>
 
 set mouse=a
 
 set background=dark
 colorscheme solarized
+
+let g:ycm_server_python_interpreter = expand('~/.nix-profile/bin/nvim-python')
