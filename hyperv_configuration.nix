@@ -26,17 +26,22 @@
   services.openssh.forwardX11 = true;
   services.openssh.permitRootLogin = "no";
 
+  programs.fish.enable = true;
+  users.defaultUserShell = pkgs.fish;
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
+  networking.enableIPv6 = false;
+
+  sound.enable = false;
 
   # Enable the X11 windowing system.
   #services.xserver.enable = true;
   #services.xserver.layout = "se";
-  #services.xserver.xkbOptions = "eurosign:e";
-  #services.xserver.windowManager.i3.enable = true;
+  #services.xserver.windowManager.openbox.enable = true;
 
-  system.stateVersion = "17.03";
+  system.stateVersion = "17.09";
 }
