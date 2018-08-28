@@ -9,6 +9,11 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.kernelModules = [ "hv_vmbus" "hv_storvsc" ];
+  boot.kernelParams = [ "consoleblank=0" "elevator=noop" "clocksource=tsc" "possible_cpus=2" ];
+
+  fileSystems."/".options = [ "noatime" "nodiratime" ];
+
+  swapDevices = [{ device = "/var/swapfile"; size = 2048; } ];
 
   i18n = {
     consoleFont = "Lat2-Terminus16";
@@ -26,22 +31,14 @@
   services.openssh.forwardX11 = true;
   services.openssh.permitRootLogin = "no";
 
-  programs.fish.enable = true;
-  users.defaultUserShell = pkgs.fish;
+  #programs.fish.enable = true;
+  #users.defaultUserShell = pkgs.fish;
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
   networking.firewall.enable = false;
   networking.enableIPv6 = false;
+  networking.interfaces.eth1.ipv4.addresses = [{ address = "10.0.0.2"; prefixLength = 24; }];
 
-  sound.enable = false;
-
-  # Enable the X11 windowing system.
-  #services.xserver.enable = true;
-  #services.xserver.layout = "se";
-  #services.xserver.windowManager.openbox.enable = true;
-
-  system.stateVersion = "17.09";
+  system.stateVersion = "18.03";
 }
