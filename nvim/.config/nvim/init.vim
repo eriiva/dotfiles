@@ -13,10 +13,12 @@ Plug 'kergoth/vim-bitbake'
 Plug 'LnL7/vim-nix'
 Plug 'calincru/qml.vim'
 Plug 'aklt/plantuml-syntax'
+Plug 'mfukar/robotframework-vim'
 Plug '~/.nix-profile/share/vim-plugins/fzf'
 Plug '~/.nix-profile/share/vim-plugins/fzf-vim'
-Plug '~/.nix-profile/share/vim-plugins/youcompleteme'
-Plug 'mfukar/robotframework-vim'
+Plug '~/.nix-profile/share/vim-plugins/LanguageClient-neovim'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2'
 call plug#end()
 
 "colorscheme elflord
@@ -45,5 +47,10 @@ set mouse=a
 set background=dark
 colorscheme solarized
 
-let g:ycm_server_python_interpreter = expand('~/.nix-profile/bin/nvim-python')
-let g:ycm_autoclose_preview_window_after_completion = 1
+let g:LanguageClient_serverCommands = {
+            \ 'cpp': ['cquery'],
+            \ 'c': ['cquery']
+            \ }
+
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
