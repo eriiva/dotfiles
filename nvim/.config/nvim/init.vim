@@ -19,6 +19,8 @@ Plug '~/.nix-profile/share/vim-plugins/fzf-vim'
 Plug '~/.nix-profile/share/vim-plugins/LanguageClient-neovim'
 Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
 call plug#end()
 
 "colorscheme elflord
@@ -39,6 +41,8 @@ map <leader>n :nohls<cr>
 map <F2> :NERDTreeToggle<cr>
 map <F3> :NERDTreeFind<cr>
 "map <F4> :TagbarToggle<cr>
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> <F6> :call LanguageClient#textDocument_definition()<CR>
 
 xnoremap p "_dP
 
@@ -47,9 +51,12 @@ set mouse=a
 set background=dark
 colorscheme solarized
 
+set shortmess+=c
+
 let g:LanguageClient_serverCommands = {
             \ 'cpp': ['cquery'],
-            \ 'c': ['cquery']
+            \ 'c': ['cquery'],
+            \ 'python': ['pyls']
             \ }
 
 autocmd BufEnter * call ncm2#enable_for_buffer()
