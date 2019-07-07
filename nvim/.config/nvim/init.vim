@@ -29,6 +29,8 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set ruler
+set clipboard+=unnamedplus
+"set termguicolors
 
 let mapleader = " "
 let g:mapleader = " "
