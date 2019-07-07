@@ -4,6 +4,7 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 call plug#begin()
 Plug 'altercation/vim-colors-solarized'
+"Plug 'jonathanfilip/vim-lucius'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 "Plug 'majutsushi/tagbar'
 Plug 'Raimondi/delimitMate'
@@ -21,6 +22,8 @@ Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2'
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 "colorscheme elflord
@@ -63,3 +66,5 @@ let g:LanguageClient_serverCommands = {
 
 autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
+
+let g:airline_theme='lucius'
