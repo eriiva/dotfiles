@@ -1,4 +1,5 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
+#{ config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -12,6 +13,18 @@
     timeout = 0;
   };
   boot.plymouth.enable = true;
+  boot.tmpOnTmpfs = true;
+  boot.kernel.sysctl = { "vm.swappiness" = 0; };
+  #boot.kernelParams = [ "i915.fastboot=1" "systemd.unified_cgroup_hierarchy=1" "systemd.legacy_systemd_cgroup_controller=0" ];
+  #boot.enableContainers = false;
+  #boot.initrd.kernelModules = [ "i915" ];
+  #boot.kernelPatches = lib.singleton {
+  #  name = "framebuffer-takeover";
+  #  patch = null;
+  #  extraConfig = ''
+  #    FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER y
+  #  '';
+  #};
 
   fileSystems."/".options = [ "noatime" "nodiratime" ];
 
