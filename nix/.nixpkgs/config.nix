@@ -5,7 +5,7 @@
     base = buildEnv {
       name = "base";
       paths = [
-        (neovim.override { vimAlias=true; }) fzf silver-searcher vimPlugins.fzfWrapper vimPlugins.fzf-vim vimPlugins.LanguageClient-neovim cquery python37Packages.python-language-server
+        neovim vimPlugins.packer-nvim ccls fzf python310Packages.python-lsp-server
         file
       ];
     };
